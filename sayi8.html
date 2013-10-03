@@ -20,17 +20,24 @@
         display: none;
       }
       .runner {
-        font-variant: small-caps;
         font-size: 87%;
-        color: #900;
+        color: #fff;
       }
       .bookTitle {
-        position: absolute;
-        top: 1%;
-        width: 100%;
-        text-align: center;
-        cursor: pointer;
+background: #282626 url(images/newbook-toc-btn.gif) no-repeat;
+       position: absolute;
+      bottom: 0;
+      height: 20px;
+      left: 0px;
+      right: 0;
+      cursor: system;
+      background: #282626;
+      color: #fff;
+      padding: 12px 8px 4px;
+      white-space: nowrap;
+      font-size: 20px;
       }
+
     </style>
 
     <script src="monocore.js"></script>
@@ -182,7 +189,7 @@
         },
         getMetaData: function(key) {
           return {
-            title: "Lorem Ipsum",
+            title: "İçindekiler",
             creator: "Mr Monocle"
           }[key];
         }
