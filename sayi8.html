@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Controls test</title>
+    <link rel="stylesheet" type="text/css" href="tests.css" />
+    <link rel="stylesheet" type="text/css" href="monocore.css" />
+    <link rel="stylesheet" type="text/css" href="monoctrl.css" />
+    <style type="text/css">
+    body,html {height: 100%;min-height: 100%;}
+      .reader {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #000;
+        background-color: #CCC;
+      }
+      #part1, #part2 {
+        display: none;
+      }
+      .runner {
+        font-variant: small-caps;
+        font-size: 87%;
+        color: #900;
+      }
+      .bookTitle {
+        position: absolute;
+        top: 1%;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+      }
+    </style>
+
+    <script src="monocore.js"></script>
+    <script src="monoctrl.js"></script>
+    <script type="text/javascript">
+      Monocle.DEBUG = true;
+
+        var bookData = {
+          getComponents: function () {
+            return [
+              'part1',
+              'part2',
+              'part3',
+              'part4',
+              'part5',
+              'part6',
+              'part7',
+              'part8',
+              'part9',
+              'part10',
+              'part11',
+              'part12',
+              'part13',
+              'part14',
+              'part15',
+              'part16',
+              'part17',
+              'part18',
+              'part19',
+              'part20',
+              'part21',
+              'part22',
+              'part23',
+              'part24',
+              'part25',
+              'part26'
+            ];
+          },
+          getContents: function () {
+            return [
+{
+  title: "Giriş",
+  src: "part1"
+},
+{
+  title: "Büyük İdealist Ecz. İbrahim Hayri Barut",
+  src: "part2"
+},
+{
+  title: "Abdi İbrahim Otsuka Yöneticileri Buluştu",
+  src: "part3"
+},
+{
+  title: "Nezih Barut 2013 Tokyo Maratonu'nda Koştu",
+  src: "part4"
+},
+{
+  title: "Bosna Herkes'in En Büyüğ İle İşbirliği",
+  src: "part5"
+},
+{
+  title: "Deawoong İle Stratejik İşbirliği",
+  src: "part6"
+},
+{
+  title: "Genç Modernliler Abdi İbrahim Tower'da",
+  src: "part7"
+},
+{
+  title: "Nesrin Esirtgen Collection'dan Manzaralar Sergisi",
+  src: "part8"
+},
+{
+  title: "Hedefimiz Sürdülerilirliğe Katkı Sağlamak",
+  src: "part9"
+},
+{
+  title: "A.İ.D. Büyümeye Devam Ediyor",
+  src: "part10"
+},
+{
+  title: "Pazarlama Dünyasının Oscar'ı Bruno'nun Oldu",
+  src: "part11"
+},
+{
+  title: "Dilekler Destek Ağacında Toplandı",
+  src: "part12"
+},
+{
+  title: "Kazakistan'ın Yıldızı: Abdi İbrahim Global Pharm",
+  src: "part13"
+},
+{
+  title: "Abdi İbrahim'e Çevreci Tesis Ödülü",
+  src: "part14"
+},
+{
+  title: "Yeşil Rehber Ofisinizde Ne Kadar Çevrecisiniz?",
+  src: "part15"
+},
+{
+  title: "Abdi İbrahim'in Çevre Duyarlılığına Büyük Övgü",
+  src: "part16"
+},
+{
+  title: "İş Hayatında Kadın",
+  src: "part17"
+},
+{
+  title: "BS Proje Yönetim Teknolojisi",
+  src: "part18"
+},
+{
+  title: "Kişiye Özel Eğitim Değerlendirme",
+  src: "part19"
+},
+{
+  title: "Kişisel Gelişim",
+  src: "part20"
+},
+{
+  title: "Burçdaşların Yemek Keyfi",
+  src: "part21"
+},
+{
+  title: "Abdi İbrahim FTR Kongresinde Dikkat Çekti",
+  src: "part22"
+},
+{
+  title: "Ferhat Farşi İTÜ Girişimcilik Zirvesindeydi",
+  src: "part23"
+},
+{
+  title: "Beslenmenin Şifresi Glişemik İndeks",
+  src: "part24"
+},
+{
+  title: "Spor",
+  src: "part25"
+},
+{
+  title: "Bulmaca",
+  src: "part26"
+}
+            ];
+          },
+        getComponent: function (cmptId) {
+          return { nodes: [document.getElementById(cmptId).cloneNode(true)] };
+        },
+        getMetaData: function(key) {
+          return {
+            title: "Lorem Ipsum",
+            creator: "Mr Monocle"
+          }[key];
+        }
+      }
+
+
+      function createBookTitle(reader, contactListeners) {
+        var bt = {}
+        bt.createControlElements = function () {
+          cntr = document.createElement('div');
+          cntr.className = "bookTitle";
+          runner = document.createElement('div');
+          runner.className = "runner";
+          runner.innerHTML = reader.getBook().getMetaData('title');
+          cntr.appendChild(runner);
+          if (contactListeners) {
+            Monocle.Events.listenForContact(cntr, contactListeners);
+          }
+          return cntr;
+        }
+        reader.addControl(bt, 'page');
+        return bt;
+      }
+
+      // Initialize the reader element.
+      Monocle.Events.listen(
+        window,
+        'load',
+        function () {
+          var readerOptions = {
+            panels: Monocle.Panels.Magic
+          };
+
+
+          Monocle.Reader('toc', bookData, readerOptions, function (rdr) {
+            window.reader5 = rdr;
+            var toc = Monocle.Controls.Contents(rdr);
+            rdr.addControl(toc, 'popover', { hidden: true });
+            createBookTitle(
+              rdr,
+              {
+                start: function () {
+                  rdr.showControl(toc);
+                }
+              }
+            );
+          });
+        }
+      );
+    </script>
+
+  </head>
+
+  <body>
+<div class="reader" id="toc"></div>
+
+
+<div id="part1">
+      <img src="dergi/sayi8/0/images/1.jpg"/>
+ <img src="dergi/sayi8/0/images/2.jpg" usemap="#map"/>
+<map name="map">
+  <area shape="rect" coords="470,81,692,96" href="#">
+  <area shape="rect" coords="469,102,694,120" href="#">
+  <area shape="rect" coords="469,125,716,144" href="#">
+  <area shape="rect" coords="465,145,700,194" href="#">
+  <area shape="rect" coords="470,200,711,218" href="#">
+  <area shape="rect" coords="467,223,731,245" href="#">
+  <area shape="rect" coords="466,245,747,268" href="#">
+  <area shape="rect" coords="468,270,744,297" href="#">
+  <area shape="rect" coords="470,300,728,319" href="#">
+  <area shape="rect" coords="467,323,734,360" href="#">
+  <area shape="rect" coords="469,361,715,383" href="#">
+  <area shape="rect" coords="469,383,749,423" href="#">
+  <area shape="rect" coords="463,426,744,450" href="#">
+  <area shape="rect" coords="471,448,735,477" href="#">
+  <area shape="rect" coords="470,483,739,543" href="#">
+  <area shape="rect" coords="474,550,722,604" href="#">
+  <area shape="rect" coords="466,610,750,647" href="#">
+  <area shape="rect" coords="467,650,745,681" href="#">
+  <area shape="rect" coords="470,684,740,713" href="#">
+  <area shape="rect" coords="473,714,743,776" href="#">
+  <area shape="rect" coords="472,780,735,829" href="#">
+  <area shape="rect" coords="471,830,732,854" href="#">
+  <area shape="rect" coords="471,857,721,889" href="#">
+  <area shape="rect" coords="469,888,724,919" href="#">
+  <area shape="rect" coords="472,922,718,949" href="#">
+</map>     
+      <img src="dergi/sayi8/0/images/3.jpg"/>
+</div>
+
+<div id="part2">
+        <img src="dergi/sayi8/0/images/4.jpg"/>
+      <img src="dergi/sayi8/0/images/5.jpg"/>
+      <img src="dergi/sayi8/0/images/6.jpg"/>
+      <img src="dergi/sayi8/0/images/7.jpg"/>
+</div>
+<div id="part3">
+      <img src="dergi/sayi8/0/images/8.jpg"/>
+</div>
+<div id="part4">
+      <img src="dergi/sayi8/0/images/9.jpg"/>
+</div>
+<div id="part5">
+      <img src="dergi/sayi8/0/images/10.jpg"/>
+</div>
+<div id="part6">
+      <img src="dergi/sayi8/0/images/11.jpg"/>
+</div>
+<div id="part7">
+      <img src="dergi/sayi8/0/images/12.jpg"/>
+</div>
+<div id="part8">
+      <img src="dergi/sayi8/0/images/13.jpg"/>
+</div>
+<div id="part9">
+      <img src="dergi/sayi8/0/images/14.jpg"/>
+      <img src="dergi/sayi8/0/images/15.jpg"/>
+      <img src="dergi/sayi8/0/images/16.jpg"/>
+      <img src="dergi/sayi8/0/images/17.jpg"/>
+</div>
+<div id="part10">
+      <img src="dergi/sayi8/0/images/18.jpg"/>
+</div>
+<div id="part11">
+      <img src="dergi/sayi8/0/images/19.jpg"/>
+</div>
+<div id="part12">
+      <img src="dergi/sayi8/0/images/20.jpg"/>
+</div>
+<div id="part13">
+      <img src="dergi/sayi8/0/images/21.jpg"/>
+      <img src="dergi/sayi8/0/images/22.jpg"/>
+      <img src="dergi/sayi8/0/images/23.jpg"/>
+</div>
+<div id="part14">
+      <img src="dergi/sayi8/0/images/24.jpg"/>
+      <img src="dergi/sayi8/0/images/25.jpg"/>
+</div>
+<div id="part15">
+      <img src="dergi/sayi8/0/images/26.jpg"/>
+      <img src="dergi/sayi8/0/images/27.jpg"/>
+</div>
+<div id="part16">
+      <img src="dergi/sayi8/0/images/28.jpg"/>
+      <img src="dergi/sayi8/0/images/29.jpg"/>
+</div>
+<div id="part17">
+      <img src="dergi/sayi8/0/images/30.jpg"/>
+      <img src="dergi/sayi8/0/images/31.jpg"/>
+      <img src="dergi/sayi8/0/images/32.jpg"/>
+      <img src="dergi/sayi8/0/images/33.jpg"/>
+</div>
+<div id="part18">
+      <img src="dergi/sayi8/0/images/34.jpg"/>
+</div>
+<div id="part19">
+      <img src="dergi/sayi8/0/images/35.jpg"/>
+</div>
+<div id="part20">
+      <img src="dergi/sayi8/0/images/36.jpg"/>
+      <img src="dergi/sayi8/0/images/37.jpg"/>
+      <img src="dergi/sayi8/0/images/38.jpg"/>
+      <img src="dergi/sayi8/0/images/39.jpg"/>
+      <img src="dergi/sayi8/0/images/40.jpg"/>
+      <img src="dergi/sayi8/0/images/41.jpg"/>
+</div>
+<div id="part21">
+      <img src="dergi/sayi8/0/images/42.jpg"/>
+      <img src="dergi/sayi8/0/images/43.jpg"/>
+</div>
+<div id="part22">
+      <img src="dergi/sayi8/0/images/44.jpg"/>
+</div>
+<div id="part23">
+      <img src="dergi/sayi8/0/images/45.jpg"/>
+</div>
+<div id="part24">
+      <img src="dergi/sayi8/0/images/46.jpg"/>
+      <img src="dergi/sayi8/0/images/47.jpg"/>
+</div>
+<div id="part25">
+      <img src="dergi/sayi8/0/images/48.jpg"/>
+      <img src="dergi/sayi8/0/images/49.jpg"/>
+</div>
+<div id="part26">
+      <img src="dergi/sayi8/0/images/50.jpg"/>
+      <img src="dergi/sayi8/0/images/51.jpg"/>
+      <img src="dergi/sayi8/0/images/52.jpg"/>
+</div>
+</body>
+</html>
