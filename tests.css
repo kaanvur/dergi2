@@ -21,17 +21,3 @@ body.narrow {
 h1, h2, h3, p, li {
   max-width: 25em;
 }
-
-.backToGuide {
-  display: block;
-  color: #CCC;
-  text-align: center;
-  text-decoration: none;
-  padding: 5px 0;
-  border-bottom: 1px dotted #CCC;
-  margin-bottom: 1em;
-}
-
-.backToGuide:hover {
-  color: #900;
-}

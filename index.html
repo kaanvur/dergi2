@@ -9,11 +9,6 @@
     <link rel="stylesheet" type="text/css" href="monocore.css" />
     <link rel="stylesheet" type="text/css" href="monoctrl.css" />
     <style type="text/css">
-      .readerInfo {
-        width: 300px;
-        float: left;
-        padding-right: 20px;
-      }
       .reader {
         position: relative;
         width: 300px;
@@ -101,52 +96,6 @@
             panels: Monocle.Panels.Magic
           };
 
-          // PLACESAVER
-          var placeSaver = new Monocle.Controls.PlaceSaver('placesaver');
-          Monocle.Reader(
-            'placesaver',
-            bookData,
-            { panels: Monocle.Panels.Marginal, place: placeSaver.savedPlace() },
-            function (rdr) {
-              window.reader1 = rdr;
-              rdr.addControl(placeSaver, 'invisible');
-            }
-          );
-
-          // MAGNIFIER
-          Monocle.Reader('magnifier', bookData, readerOptions, function (rdr) {
-            window.reader2 = rdr;
-            var magnifier = new Monocle.Controls.Magnifier(rdr);
-            rdr.addControl(magnifier);
-          });
-
-          // SCRUBBER
-          Monocle.Reader('scrubber', bookData, readerOptions, function (rdr) {
-            window.reader3 = rdr;
-            var scrubber = new Monocle.Controls.Scrubber(rdr);
-            rdr.addControl(scrubber);
-          });
-
-          // SPINNER
-          Monocle.Reader('spinner', bookData, readerOptions, function (rdr) {
-            window.reader4 = rdr;
-            var spinner = Monocle.Controls.Spinner(rdr);
-            rdr.addControl(spinner, 'page', { hidden: true });
-            bookTitle = createBookTitle(
-              rdr,
-              {
-                start: function () {
-                  if (spinner.spinning) {
-                    spinner.spun();
-                    spinner.spinning = false;
-                  } else {
-                    spinner.spin();
-                    spinner.spinning = true;
-                  }
-                }
-              }
-            );
-          });
 
           Monocle.Reader('toc', bookData, readerOptions, function (rdr) {
             window.reader5 = rdr;
@@ -168,48 +117,8 @@
   </head>
 
   <body>
-    <a href="../index.html" class="backToGuide">&larr; Back to Guide</a>
+<div class="reader" id="toc"></div>
 
-    <div class="readerInfo">
-      <h2>PlaceSaver</h2>
-      <div class="reader" id="placesaver"></div>
-      <p>
-        Turn to a page, then Shift-Refresh. Should be at same page.
-      </p>
-    </div>
-
-    <div class="readerInfo">
-      <h2>Font Magnifier</h2>
-      <div class="reader" id="magnifier"></div>
-      <p>
-        Click the AA icon in the top right corner to toggle large/normal fonts.
-      </p>
-    </div>
-
-    <div class="readerInfo">
-      <h2>Scrubber</h2>
-      <div class="reader" id="scrubber"></div>
-      <p>
-        Drag along the circle at the base of page to change location.
-      </p>
-    </div>
-
-    <div class="readerInfo">
-      <h2>Spinner</h2>
-      <div class="reader" id="spinner"></div>
-      <p>
-        Click the book title to invoke a page-embedded spinner.
-      </p>
-    </div>
-
-    <div class="readerInfo">
-      <h2>Table of Contents</h2>
-      <div class="reader" id="toc"></div>
-      <p>
-        Click the book title to invoke modal window.
-        Click outside modal window to dismiss.
-      </p>
-    </div>
 
 <div id="part1">
   <h3>I</h3>
