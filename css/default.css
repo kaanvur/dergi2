@@ -57,8 +57,9 @@ a:hover{
 
 .details img{
 	margin: 0 auto;
-	width: 80%;
+	width: 78%;
 	display: block;
+	margin-left: 12px;
 }
 
 .bookshelf{
