@@ -30,7 +30,7 @@ a:hover{
 	height:100%;
 	min-height:400px; 
 	position:relative;
-	background:url(../pics/splash-bg.jpg) bottom left repeat-x;
+	background:url(../pics/splash-bg.jpg);
 	
 	-webkit-transition:height 1s;
 	-moz-transition:height 1s;
